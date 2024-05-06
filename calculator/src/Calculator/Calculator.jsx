@@ -11,6 +11,9 @@ const Calculator = ()=>{
 
     const handleClick = (value) => {
         if(value === '='){
+            if(number===''){
+                setErrorMessage('Invalid expression')
+            }
             try{
                 const res = eval(number);
                 setResult(res);     
