@@ -12,13 +12,13 @@ const Calculator = ()=>{
     const handleClick = (value) => {
         if(value === '='){
             if(number===''){
-                setErrorMessage('Invalid expression')
+                setErrorMessage('Error')
             }
             try{
                 const res = eval(number);
                 setResult(res);     
             } catch (error) {
-                setErrorMessage('Invalid expression');
+                setErrorMessage('Error');
             }      
         }
         else if(value === 'C'){
