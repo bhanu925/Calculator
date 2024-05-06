@@ -7,15 +7,21 @@ const Calculator = ()=>{
 
     const [ number , setNumber ] = useState('');
     const [ result , setResult ] = useState('');
+    const [ errorMessage , setErrorMessage ] = useState('');
 
     const handleClick = (value) => {
         if(value === '='){
-            const res = eval(number);
-            setResult(res);           
+            try{
+                const res = eval(number);
+                setResult(res);     
+            } catch (error) {
+                setErrorMessage('Invalid expression');
+            }      
         }
         else if(value === 'C'){
             setNumber('');
             setResult('');
+            setErrorMessage('');
         }else{
             setNumber(number + value);
         }
@@ -24,6 +30,7 @@ const Calculator = ()=>{
     return <>
     <h1>React Calculator</h1>
     <input type="text" value={number} />
+    {errorMessage && <div>{errorMessage}</div>}
     <h3>{result}</h3>
     <div className='container'>
         {array.map((ele)=>{
